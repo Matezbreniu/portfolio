@@ -19,13 +19,15 @@ const pages = [
   {path: '/about', name: 'About', order: 1, component: About},
   {path: '/portfolio', name: 'Portfolio', order: 2, component: Portfolio},
   {path: '/contact', name: 'Contact', order: 3, component: Contact},
-];
-
-const portfolioPages = [
-  {path: '/portfolio/bamar', name: 'Bamar', order: 10, component: Bamar},
+  {
+    path: '/portfolio/bamar',
+    name: 'Bamar',
+    order: 10,
+    component: Bamar,
+  },
   {
     path: '/portfolio/weatherapp',
-    name: 'Weather App',
+    name: 'Weatherapp',
     order: 11,
     component: WeatherApp,
   },
@@ -37,7 +39,7 @@ const portfolioPages = [
   },
   {
     path: '/portfolio/swiezaskibka',
-    name: 'Swieża skibka',
+    name: 'Swiezaskibka',
     order: 13,
     component: Swiezaskibka,
   },
@@ -47,7 +49,7 @@ const App = () => {
   return (
     <Router>
       <GlobalStyles />
-      <Container pages={pages} portfolioPages={portfolioPages} />
+      <Container pages={pages} />
     </Router>
   );
 };

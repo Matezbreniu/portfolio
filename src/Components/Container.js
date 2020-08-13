@@ -111,7 +111,7 @@ class Container extends Component {
       isTransitionActive: false,
     };
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     let newPage = this.setPage(this.props.location.pathname);
     let newPageOrder = this.props.pages.find((page) => page.name === newPage)
       .order;
@@ -152,6 +152,18 @@ class Container extends Component {
       case '/contact':
         page = 'Contact';
         break;
+      case '/portfolio/bamar':
+        page = 'Bamar';
+        break;
+      case '/portfolio/weatherapp':
+        page = 'Weatherapp';
+        break;
+      case '/portfolio/sportregeneracja':
+        page = 'Sportregeneracja';
+        break;
+      case '/portfolio/swiezaskibka':
+        page = 'Swiezaskibka';
+        break;
       default:
         page = 'Home';
     }
@@ -168,13 +180,13 @@ class Container extends Component {
     return foundPage;
   };
 
-  menuActivator = () => {
+  handleMenuActivator = () => {
     this.setState({
       isMenuActive: !this.state.isMenuActive,
     });
   };
 
-  transitionActivator = () => {
+  handleTransitionActivator = () => {
     this.setState({
       isTransitionActive: !this.state.isTransitionActive,
     });
@@ -186,7 +198,7 @@ class Container extends Component {
         <Header
           isTransitionActive={this.state.isTransitionActive}
           isMenuActive={this.state.isMenuActive}
-          menuActivator={this.menuActivator}
+          handleMenuActivator={this.handleMenuActivator}
           pages={this.props.pages}
           currentPath={this.props.location.pathname}
         />
@@ -198,8 +210,8 @@ class Container extends Component {
               key={this.props.location.key}
               timeout={{enter: 1300, exit: 1300}}
               classNames='route'
-              onEnter={this.transitionActivator}
-              onExited={this.transitionActivator}
+              onEnter={this.handleTransitionActivator}
+              onExited={this.handleTransitionActivator}
             >
               <section className='routeSection'>
                 <Switch location={this.props.location}>

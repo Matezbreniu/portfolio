@@ -55,16 +55,16 @@ const BurgerSpan = styled.span`
   }
 `;
 
-const Burger = (props) => {
+const Burger = ({isTransitionActive, isMenuActive, handleMenuActivator}) => {
   return (
     <BurgerBtn
-      isTransitionActive={props.isTransitionActive}
-      isMenuActive={props.isMenuActive}
-      onClick={props.menuActivator}
+      isTransitionActive={isTransitionActive}
+      isMenuActive={isMenuActive}
+      onClick={handleMenuActivator}
     >
-      <BurgerSpan isMenuActive={props.isMenuActive}></BurgerSpan>
-      <BurgerSpan isMenuActive={props.isMenuActive}></BurgerSpan>
-      <BurgerSpan isMenuActive={props.isMenuActive}></BurgerSpan>
+      <BurgerSpan isMenuActive={isMenuActive}></BurgerSpan>
+      <BurgerSpan isMenuActive={isMenuActive}></BurgerSpan>
+      <BurgerSpan isMenuActive={isMenuActive}></BurgerSpan>
     </BurgerBtn>
   );
 };

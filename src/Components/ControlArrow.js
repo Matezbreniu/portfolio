@@ -78,8 +78,7 @@ const Btn = styled(Link)`
   }
 `;
 
-const ControlArrow = (props) => {
-  const {direction, name, path} = props;
+const ControlArrow = ({direction, name, path}) => {
   return (
     <Btn
       direction={direction}

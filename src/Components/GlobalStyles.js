@@ -21,8 +21,8 @@ const GlobalStyle = createGlobalStyle`
     --color-background-white: #D9D9D9;
 
 
-    --color-button: #767676;
-    --color-button-darker: #5e5e5e;
+    --color-button: #1561fb;
+    --color-button-darker: #0349d5;
 
     --color-font: #B2B2B2;
     --color-font-dark: #676767;

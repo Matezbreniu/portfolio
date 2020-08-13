@@ -19,7 +19,6 @@ const About = () => {
     <Wrapper>
       <Container>
         <Title>Who's this guy?</Title>
-
         <Img src={MyPhoto} />
         <Description>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci

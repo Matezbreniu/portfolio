@@ -12,6 +12,7 @@ background-color: transparent;
 border: none;
 border-bottom: 2px solid;
 color: var(--color-font-light);
+
 &:focus{
   outline:none;
 }`;
@@ -42,6 +43,7 @@ const ValidateButton = styled(Button)`
   justify-self: right;
   opacity: ${(props) => (props.validate ? 1 : 0.2)};
   cursor: ${(props) => (props.validate ? 'pointer' : 'not-allowed')};
+  transition: 0.3s;
 `;
 
 const CorrectlySent = styled.div`
@@ -76,16 +78,15 @@ class Form extends Component {
     message: null,
   };
 
-  onChange = (e) => {
+  handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    this.validate(name, value);
     this.setState({
       [name]: value,
     });
   };
 
-  onSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.validation) {
       const params = {
@@ -105,46 +106,44 @@ class Form extends Component {
     });
   };
 
-  validate = (e) => {
-    if (e.type === 'blur') {
-      const name = e.target.name;
-      const value = e.target.value;
-      let validate = false;
-      if (name === 'name') {
-        validate = value.length > 3;
+  handleValidate = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    let validate = false;
+    if (name === 'name') {
+      validate = value.length > 3;
+    }
+    if (name === 'email') {
+      if (value.indexOf('@') > 0 && value.indexOf('.') > 0) {
+        validate = true;
       }
-      if (name === 'email') {
-        if (value.indexOf('@') > 0 && value.indexOf('.') > 0) {
-          validate = true;
-        }
-      }
-      if (name === 'message') {
-        validate = value.length > 3;
-      }
-      this.validationList[name] = validate;
-      if (
-        this.validationList.name &&
-        this.validationList.email &&
-        this.validationList.message
-      ) {
-        this.setState({
-          validation: true,
-        });
-      }
+    }
+    if (name === 'message') {
+      validate = value.length > 3;
+    }
+    this.validationList[name] = validate;
+    if (
+      this.validationList.name &&
+      this.validationList.email &&
+      this.validationList.message
+    ) {
+      this.setState({
+        validation: true,
+      });
     }
   };
 
   render() {
     return (
-      <SendMessage onSubmit={this.onSubmit}>
+      <SendMessage onSubmit={this.handleSubmit}>
         <Label htmlFor='name'>
           <Input
             type='text'
             name='name'
             autocomplete='off'
             value={this.state.name}
-            onChange={this.onChange}
-            onBlur={this.validate}
+            onChange={this.handleChange}
+            onBlur={this.handleValidate}
             validate={this.validationList.name}
             placeholder='Your name'
           />
@@ -155,8 +154,8 @@ class Form extends Component {
             name='email'
             autocomplete='off'
             value={this.state.email}
-            onChange={this.onChange}
-            onBlur={this.validate}
+            onChange={this.handleChange}
+            onBlur={this.handleValidate}
             validate={this.validationList.email}
             placeholder='Your email'
           />
@@ -166,8 +165,8 @@ class Form extends Component {
             name='message'
             autocomplete='off'
             value={this.state.message}
-            onChange={this.onChange}
-            onBlur={this.validate}
+            onChange={this.handleChange}
+            onBlur={this.handleValidate}
             validate={this.validationList.message}
             cols='30'
             rows='10'

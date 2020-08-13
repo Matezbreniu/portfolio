@@ -6,7 +6,7 @@ import gsap from 'gsap';
 
 import Burger from './Burger';
 
-const mouseEnter = (e) => {
+const handleMouseEnter = (e) => {
   const letterList = [...e.target.childNodes[0].childNodes];
   const tl = gsap.timeline();
   tl.to(letterList, {
@@ -75,21 +75,27 @@ const LetterSpan = styled.span`
   display: inline-block;
 `;
 
-const Header = (props) => {
+const Header = ({
+  pages,
+  isMenuActive,
+  isTransitionActive,
+  handleMenuActivator,
+}) => {
+  const menuPages = pages.filter((page) => page.order < 10);
   return (
     <Wrapper>
       <Burger
-        isMenuActive={props.isMenuActive}
-        isTransitionActive={props.isTransitionActive}
-        menuActivator={props.menuActivator}
+        isMenuActive={isMenuActive}
+        isTransitionActive={isTransitionActive}
+        handleMenuActivator={handleMenuActivator}
       />
-      <Navigation isMenuActive={props.isMenuActive}>
-        {props.pages.map((page) => (
+      <Navigation isMenuActive={isMenuActive}>
+        {menuPages.map((page) => (
           <NavigationLink
             key={page.order}
             to={page.path}
-            onMouseEnter={mouseEnter}
-            onClick={props.menuActivator}
+            onMouseEnter={handleMouseEnter}
+            onClick={handleMenuActivator}
             exact
             activeClassName='selected'
           >

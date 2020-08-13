@@ -10,15 +10,15 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   margin: 0px auto;
-  padding-top: 40px;
+  padding: 40px 0;
   width: 90%;
   max-width: var(--max-space);
 `;
 
 const Title = styled.h2`
-  margin: 20px;
+  margin: 10px 0;
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.3rem;
   color: var(--color-font-light);
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
 `;
@@ -26,7 +26,7 @@ const Title = styled.h2`
 const Button = styled.button`
   margin: 5px 0px;
   padding: 10px 20px;
-  color: var(--color-font-light);
+  color: white;
   background-color: var(--color-button);
   border: none;
   box-shadow: 2px 2px 0px 2px var(--color-button-darker);

@@ -60,8 +60,8 @@ const Tech = styled.span`
   font-size: 0.7rem;
 `;
 
-const Project = (props) => {
-  const {name, technology, link, background} = props.project;
+const Project = ({project}) => {
+  const {name, technology, link, background} = project;
   return (
     <Container to={link} backgroundimage={background}>
       <Title>{name}</Title>
