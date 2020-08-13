@@ -1,26 +1,55 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router} from 'react-router-dom';
 
-function App() {
+import Container from './Components/Container';
+import GlobalStyles from './Components/GlobalStyles';
+
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Portfolio from './Pages/Portfolio';
+import Contact from './Pages/Contact';
+
+import Bamar from './Pages/Bamar';
+import WeatherApp from './Pages/WeatherApp';
+import Sportregeneracja from './Pages/Sportregeneracja';
+import Swiezaskibka from './Pages/Swiezaskibka';
+
+const pages = [
+  {path: '/', name: 'Home', order: 0, component: Home},
+  {path: '/about', name: 'About', order: 1, component: About},
+  {path: '/portfolio', name: 'Portfolio', order: 2, component: Portfolio},
+  {path: '/contact', name: 'Contact', order: 3, component: Contact},
+];
+
+const portfolioPages = [
+  {path: '/portfolio/bamar', name: 'Bamar', order: 10, component: Bamar},
+  {
+    path: '/portfolio/weatherapp',
+    name: 'Weather App',
+    order: 11,
+    component: WeatherApp,
+  },
+  {
+    path: '/portfolio/sportregeneracja',
+    name: 'Sportregeneracja',
+    order: 12,
+    component: Sportregeneracja,
+  },
+  {
+    path: '/portfolio/swiezaskibka',
+    name: 'Swieża skibka',
+    order: 13,
+    component: Swiezaskibka,
+  },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <GlobalStyles />
+      <Container pages={pages} portfolioPages={portfolioPages} />
+    </Router>
   );
-}
+};
 
 export default App;
