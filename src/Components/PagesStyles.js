@@ -31,6 +31,12 @@ const Button = styled.button`
   border: none;
   box-shadow: 2px 2px 0px 2px var(--color-button-darker);
   border-radius: 4px;
+  transition: 0.2s;
+
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
 
   &:focus {
     outline: none;

@@ -6,8 +6,9 @@ import {Link} from 'react-router-dom';
 
 const Container = styled(Link)`
   position: relative;
-  margin: 30px 0;
+  margin: 30px auto;
   width: 100%;
+  max-width: 650px;
   background-image: url(${(props) => props.backgroundimage});
   background-position: center;
   background-size: cover;
@@ -35,19 +36,30 @@ const Content = styled.div`
   z-index: 0;
 `;
 
+const ContentContainer = styled.div`
+  position: absolute;
+  top: -100%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
 const TechContainer = styled.div`
   position: absolute;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  top: -100%;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Tech = styled.span`
+  margin: 5px;
   padding: 3px 7px;
   border: 1px solid;
   border-color: var(--color-background);
@@ -58,24 +70,23 @@ const Tech = styled.span`
   transform: translateX(-50px) scaleY(0);
   text-align: center;
   font-size: 0.7rem;
-  opacity: 0;
 `;
 
 class Project extends Component {
   constructor(props) {
     super(props);
-    this.techContainer = React.createRef();
+    this.contentContainer = React.createRef();
     this.state = {
       isHovered: false,
     };
   }
   tl = null;
 
-  handleTechContainerAnimation = () => {
-    const techContainer = this.techContainer.current;
-    const techList = techContainer.childNodes;
+  handleContentContainerAnimation = () => {
+    const contentContainer = this.contentContainer.current;
+    const techList = contentContainer.childNodes[0].childNodes;
     const tl = gsap.timeline({paused: true});
-    tl.to(techContainer, {
+    tl.to(contentContainer, {
       y: '100%',
       duration: 0.3,
     });
@@ -84,7 +95,7 @@ class Project extends Component {
       scaleY: 1,
       opacity: 1,
       duration: 0.2,
-      stagger: 0.2,
+      stagger: 0.1,
     });
     return tl;
   };
@@ -97,7 +108,7 @@ class Project extends Component {
   };
 
   componentDidMount() {
-    this.tl = this.handleTechContainerAnimation();
+    this.tl = this.handleContentContainerAnimation();
   }
 
   render() {
@@ -109,11 +120,13 @@ class Project extends Component {
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
         >
-          <TechContainer ref={this.techContainer}>
-            {technology.map((tech, index) => (
-              <Tech key={index}>{tech}</Tech>
-            ))}
-          </TechContainer>
+          <ContentContainer ref={this.contentContainer}>
+            <TechContainer>
+              {technology.map((tech, index) => (
+                <Tech key={index}>{tech}</Tech>
+              ))}
+            </TechContainer>
+          </ContentContainer>
         </Content>
       </Container>
     );

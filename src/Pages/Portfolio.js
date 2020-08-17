@@ -11,25 +11,25 @@ import SwiezaskibkaBackground from '../Images/swiezaskibkaBackground.jpg';
 const projectsList = [
   {
     name: 'Bamar',
-    technology: ['REACTJS', 'CSS'],
+    technology: ['REACTJS', 'CSS3', 'HTML5', 'JAVASCRIPT', 'GSAP'],
     link: '/portfolio/bamar',
     background: SportRegeneracjaBackground,
   },
   {
     name: 'Weather App',
-    technology: ['REACTJS', 'CSS'],
+    technology: ['REACTJS', 'CSS3', 'HTML5', 'JAVASCRIPT', 'API'],
     link: '/portfolio/weatherapp',
   },
   {
     name: 'Sportregeneracja',
-    technology: ['HTML', 'CSS', 'JAVASCRIPT'],
+    technology: ['CSS3', 'HTML5', 'JAVASCRIPT'],
     link: '/portfolio/sportregeneracja',
     background: SportRegeneracjaBackground,
   },
 
   {
     name: 'Swieża skibka',
-    technology: ['REACTJS', 'CSS'],
+    technology: ['REACTJS', 'CSS', 'HTML5', 'JAVASCRIPT'],
     link: '/portfolio/swiezaskibka',
     background: SwiezaskibkaBackground,
   },
