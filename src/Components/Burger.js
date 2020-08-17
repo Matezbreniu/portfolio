@@ -8,7 +8,6 @@ const BurgerBtn = styled.div`
   right: 10%;
   width: 30px;
   height: 30px;
-  padding: 5px;
   z-index: 3;
   cursor: pointer;
   opacity: ${(props) => (props.isTransitionActive ? 0 : 1)};

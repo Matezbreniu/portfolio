@@ -5,12 +5,22 @@ import styled from 'styled-components';
 
 import {Button} from '../Components/PagesStyles';
 
+const handleValidateStyle = (props) => {
+  const {isValid, isValidated} = props.validationObject;
+  let color = 'transparent';
+  if (!isValid && isValidated) {
+    color = 'red';
+  }
+  return color;
+};
+
 const inputStyle = `
 padding: 10px;
 width: 100%;
-background-color: transparent;
+
 border: none;
 border-bottom: 2px solid;
+border-radius: 5px 5px 0px 0px;
 color: var(--color-font-light);
 
 &:focus{
@@ -31,18 +41,21 @@ const Label = styled.label`
 const Input = styled.input`
   margin: 10px 0;
   ${inputStyle};
+  background-color: ${(props) => handleValidateStyle(props)};
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
   ${inputStyle};
   resize: none;
+  background-color: ${(props) => handleValidateStyle(props)};
 `;
 
 const ValidateButton = styled(Button)`
+  margin-right: 5px;
   justify-self: right;
-  opacity: ${(props) => (props.validate ? 1 : 0.2)};
-  cursor: ${(props) => (props.validate ? 'pointer' : 'not-allowed')};
+  opacity: ${(props) => (props.disabled ? 0.2 : 1)};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   transition: 0.3s;
 `;
 
@@ -53,6 +66,7 @@ const CorrectlySent = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
 `;
 
 const Message = styled.h3`
@@ -72,15 +86,16 @@ class Form extends Component {
     sent: false,
   };
 
-  validationList = {
-    name: null,
-    email: null,
-    message: null,
-  };
+  validationList = [
+    {name: 'name', isValid: false, isValidated: false},
+    {name: 'email', isValid: false, isValidated: false},
+    {name: 'message', isValid: false, isValidated: false},
+  ];
 
   handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    this.handleValidate(e);
     this.setState({
       [name]: value,
     });
@@ -109,9 +124,11 @@ class Form extends Component {
   handleValidate = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    const object = this.findObjectInValidationList(name);
     let validate = false;
+    let validation = false;
     if (name === 'name') {
-      validate = value.length > 3;
+      validate = value.length > 2;
     }
     if (name === 'email') {
       if (value.indexOf('@') > 0 && value.indexOf('.') > 0) {
@@ -119,18 +136,23 @@ class Form extends Component {
       }
     }
     if (name === 'message') {
-      validate = value.length > 3;
+      validate = value.length > 2;
     }
-    this.validationList[name] = validate;
-    if (
-      this.validationList.name &&
-      this.validationList.email &&
-      this.validationList.message
-    ) {
-      this.setState({
-        validation: true,
-      });
+    object.isValid = validate;
+    if (e.type === 'blur') {
+      object.isValidated = true; //prevent to color change while handleChange
     }
+    const isAllValid = this.validationList.filter((object) => object.isValid);
+    if (isAllValid.length === this.validationList.length) {
+      validation = true;
+    }
+    this.setState({
+      validation,
+    });
+  };
+
+  findObjectInValidationList = (name) => {
+    return this.validationList.find((object) => object.name === name);
   };
 
   render() {
@@ -144,7 +166,7 @@ class Form extends Component {
             value={this.state.name}
             onChange={this.handleChange}
             onBlur={this.handleValidate}
-            validate={this.validationList.name}
+            validationObject={this.findObjectInValidationList('name')}
             placeholder='Your name'
           />
         </Label>
@@ -156,7 +178,7 @@ class Form extends Component {
             value={this.state.email}
             onChange={this.handleChange}
             onBlur={this.handleValidate}
-            validate={this.validationList.email}
+            validationObject={this.findObjectInValidationList('email')}
             placeholder='Your email'
           />
         </Label>
@@ -167,7 +189,7 @@ class Form extends Component {
             value={this.state.message}
             onChange={this.handleChange}
             onBlur={this.handleValidate}
-            validate={this.validationList.message}
+            validationObject={this.findObjectInValidationList('message')}
             cols='30'
             rows='10'
             placeholder='Your message'

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {Wrapper, Container, Title, Button} from './PagesStyles';
+import LinkToPortfolio from './LinkToPortfolio';
 
 const LinksContainer = styled.div`
   margin: 10px 0;
@@ -11,7 +12,7 @@ const LinksContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Link = styled(Button)`
+const LinkBtn = styled(Button)`
   text-decoration: none;
   background-color: ${(props) => props.color};
   box-shadow: 2px 2px 0px 2px ${(props) => props.shadowColor};
@@ -20,9 +21,11 @@ const Link = styled(Button)`
 
 const Image = styled.img`
   width: 100%;
+  box-shadow: 4px 4px 0px 0px var(--color-background-dark);
 `;
 
 const SubTitle = styled(Title)`
+  text-align: left;
   font-size: 1.3rem;
 `;
 
@@ -38,25 +41,26 @@ const PortfolioProject = ({site}) => {
   const {title, description, technologies, image} = site;
   return (
     <Wrapper>
+      <LinkToPortfolio />
       <Container>
         <Title>{title}</Title>
         <LinksContainer>
-          <Link
+          <LinkBtn
             as='a'
             color='#f22424'
             shadowColor='#d10c0c'
             href='https://github.com/Matezbreniu/'
           >
             Code
-          </Link>
-          <Link
+          </LinkBtn>
+          <LinkBtn
             as='a'
             color='#248df3'
             shadowColor='#0b71d3'
             href='https://github.com/Matezbreniu/'
           >
             Website
-          </Link>
+          </LinkBtn>
         </LinksContainer>
         <Image src={image} />
         <SubTitle>Description</SubTitle>
