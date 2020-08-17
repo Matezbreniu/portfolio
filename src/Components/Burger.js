@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const BurgerBtn = styled.div`
   position: fixed;
-  top: 10%;
+  top: 5%;
   right: 10%;
   width: 30px;
   height: 30px;

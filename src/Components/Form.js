@@ -103,7 +103,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.validation) {
+    if (this.state.validation && !this.state.sent) {
       const params = {
         name: this.state.name,
         email: this.state.email,

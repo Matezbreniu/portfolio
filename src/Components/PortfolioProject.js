@@ -67,8 +67,8 @@ const PortfolioProject = ({site}) => {
         <Description>{description}</Description>
         <SubTitle>Used technologies</SubTitle>
         <TechnologiesList>
-          {technologies.map((technology) => (
-            <Technology>{technology}</Technology>
+          {technologies.map((technology, index) => (
+            <Technology key={index}>{technology}</Technology>
           ))}
         </TechnologiesList>
       </Container>

@@ -5,14 +5,13 @@ import {Link} from 'react-router-dom';
 
 const PortfolioLink = styled(Link)`
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 10%;
   width: 30px;
   height: 30px;
   z-index: 3;
   cursor: pointer;
-  opacity: ${(props) => (props.isTransitionActive ? 0 : 1)};
-  transition: 0.3s;
+  overflow: hidden;
 `;
 
 const ArrowContainer = styled.div`
