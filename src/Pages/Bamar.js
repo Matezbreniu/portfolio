@@ -8,7 +8,7 @@ const site = {
   title: 'Bamar',
   image: bamarPhoto,
   description:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt consequatur ad quas alias voluptatibus, deleniti ex eveniet asperiores, vitae voluptas distinctio consequuntur omnis, esse soluta natus quod porro perferendis adipisci!',
+    'This is my latest project. The website was created to help BAMAR a center for sports and education be more visible in web. Here I used React.js with CSS stylesheets, Gsap for animations and icons made by Freepik.',
   technologies: ['React.js', 'CSS3', 'HTML5', 'JavaScript', 'Gsap'],
 };
 

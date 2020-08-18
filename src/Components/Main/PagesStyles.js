@@ -43,4 +43,9 @@ const Button = styled.button`
   }
 `;
 
-export {Wrapper, Container, Title, Button};
+const Description = styled.p`
+  margin: 10px 0;
+  font-size: 1.2rem;
+`;
+
+export {Wrapper, Container, Title, Button, Description};

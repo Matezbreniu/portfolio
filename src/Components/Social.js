@@ -62,10 +62,8 @@ const Social = () => {
   return (
     <SocialsContainer>
       <Description>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        repellat eaque consequatur quisquam accusantium, commodi, modi
-        distinctio quia, voluptatem voluptatibus minima quod veritatis in
-        consequuntur rem fugit? Consequuntur, corrupti laudantium.
+        You can also find me in social medias and follow my profiles on
+        Facebook, Github or Linkedin.
       </Description>
       <ButtonsContainer>
         <SocialButton as='a' href='https://www.facebook.com/mateusz.brek'>

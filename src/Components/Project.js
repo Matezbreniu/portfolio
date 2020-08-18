@@ -8,7 +8,6 @@ const Container = styled(Link)`
   position: relative;
   margin: 30px auto;
   width: 100%;
-  max-width: 650px;
   background-image: url(${(props) => props.backgroundimage});
   background-position: center;
   background-size: cover;

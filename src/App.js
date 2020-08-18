@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 
-import Container from './Components/Container';
-import GlobalStyles from './Components/GlobalStyles';
+import Container from './Components/Main/Container';
+import GlobalStyles from './Components/Main/GlobalStyles';
 
 import Home from './Pages/Home';
 import About from './Pages/About';

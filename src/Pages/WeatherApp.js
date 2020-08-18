@@ -8,8 +8,8 @@ const site = {
   title: 'Weather App',
   image: weatherAppPhoto,
   description:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt consequatur ad quas alias voluptatibus, deleniti ex eveniet asperiores, vitae voluptas distinctio consequuntur omnis, esse soluta natus quod porro perferendis adipisci!',
-  technologies: ['React.js', 'CSS3', 'HTML5', 'JavaScript', 'API'],
+    'This application was created so that I could learn to use fetch and API as well as check the weather how to dress up myself. Here I used React.js and CSS stylesheets. The application shows 5 hints after 3rd letter from JSON file, then find the city in API using fetch.',
+  technologies: ['React.js', 'CSS3', 'HTML5', 'JavaScript', 'JSON', 'API'],
 };
 
 const WeatherApp = () => {

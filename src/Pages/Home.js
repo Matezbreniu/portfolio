@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import {Wrapper} from '../Components/PagesStyles';
+import {Wrapper} from '../Components/Main/PagesStyles';
 
 import MatrixCanvas from '../Components/MatrixCanvas';
 
@@ -16,11 +16,12 @@ const Center = styled.div`
 
 const Title = styled.h1`
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.6rem;
+  color: var(--color-font-light);
 `;
 const Description = styled.p`
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.6rem;
 `;
 
 const Home = () => {
@@ -28,12 +29,7 @@ const Home = () => {
     <Wrapper>
       <Center>
         <Title>Mateusz Bręk</Title>
-        <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, vitae
-          nam fugiat necessitatibus placeat perspiciatis soluta a doloribus
-          accusantium provident ratione? Aliquam temporibus dolorem atque fugit
-          saepe, mollitia cupiditate cum.
-        </Description>
+        <Description>Front-end Developer</Description>
       </Center>
       <MatrixCanvas />
     </Wrapper>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import {Wrapper, Container, Title, Button} from './PagesStyles';
+import {Wrapper, Container, Title, Button} from './Main/PagesStyles';
 import LinkToPortfolio from './LinkToPortfolio';
 
 const LinksContainer = styled.div`

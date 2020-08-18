@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 
-import {Button} from '../Components/PagesStyles';
+import {Button} from './Main/PagesStyles';
 
 const handleValidateStyle = (props) => {
   const {isValid, isValidated} = props.validationObject;

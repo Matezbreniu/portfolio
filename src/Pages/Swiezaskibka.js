@@ -8,8 +8,8 @@ const site = {
   title: 'Świeża Skibka',
   image: swiezaskibkaPhoto,
   description:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt consequatur ad quas alias voluptatibus, deleniti ex eveniet asperiores, vitae voluptas distinctio consequuntur omnis, esse soluta natus quod porro perferendis adipisci!',
-  technologies: ['React.js', 'CSS3', 'HTML5', 'JavaScript'],
+    'This project was made to help customers place orders more easily. The application counts the selected products and, depending on the price and place of delivery, adds the logistic cost. The idea was to keep the website as simple as possible. Here I used React.js with controled form and validations, CSS stylesheets, and EmailJS for sending orders to the company.',
+  technologies: ['React.js', 'CSS3', 'HTML5', 'JavaScript', 'EmailJS'],
 };
 
 const Swiezaskibka = () => {

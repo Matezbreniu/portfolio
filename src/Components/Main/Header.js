@@ -1,10 +1,10 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import {NavLink} from 'react-router-dom';
 import gsap from 'gsap';
+import {NavLink} from 'react-router-dom';
 
-import Burger from './Burger';
+import Burger from '../Burger';
 
 const handleMouseEnter = (e) => {
   const letterList = [...e.target.childNodes[0].childNodes];

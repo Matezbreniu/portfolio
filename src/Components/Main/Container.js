@@ -4,9 +4,8 @@ import {Switch, Route, withRouter} from 'react-router-dom';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import styled from 'styled-components';
 
-import ControlArrow from './ControlArrow';
-
 import Header from './Header';
+import ControlArrow from '../ControlArrow';
 
 const Wrapper = styled.main`
   .left .route-enter-active {

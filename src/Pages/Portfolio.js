@@ -2,9 +2,16 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import {Wrapper, Container, Title} from '../Components/PagesStyles';
+import {
+  Wrapper,
+  Container,
+  Title,
+  Description,
+} from '../Components/Main/PagesStyles';
 import Project from '../Components/Project';
 
+import BamarBackground from '../Images/bamarBackground.jpg';
+import WeatherAppBackground from '../Images/weatherAppBackground.jpg';
 import SportRegeneracjaBackground from '../Images/sportregeneracjaBackground.jpg';
 import SwiezaskibkaBackground from '../Images/swiezaskibkaBackground.jpg';
 
@@ -13,12 +20,13 @@ const projectsList = [
     name: 'Bamar',
     technology: ['REACTJS', 'CSS3', 'HTML5', 'JAVASCRIPT', 'GSAP'],
     link: '/portfolio/bamar',
-    background: SportRegeneracjaBackground,
+    background: BamarBackground,
   },
   {
     name: 'Weather App',
     technology: ['REACTJS', 'CSS3', 'HTML5', 'JAVASCRIPT', 'API'],
     link: '/portfolio/weatherapp',
+    background: WeatherAppBackground,
   },
   {
     name: 'Sportregeneracja',
@@ -35,8 +43,6 @@ const projectsList = [
   },
 ];
 
-const Description = styled.p``;
-
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -48,10 +54,7 @@ const Portfolio = () => {
       <Container>
         <Title>Portfolio</Title>
         <Description>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
-          reiciendis dolorum nemo laborum dignissimos reprehenderit quam
-          necessitatibus accusamus officia quidem perspiciatis architecto,
-          voluptatum, culpa minima, esse praesentium dolores. Sit, porro!{' '}
+          Here you can find some of my latest projects. Enjoy!
         </Description>
         <Content>
           {projectsList.map((project, index) => (
