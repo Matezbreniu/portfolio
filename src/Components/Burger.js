@@ -11,6 +11,7 @@ const BurgerBtn = styled.div`
   z-index: 3;
   cursor: pointer;
   opacity: ${(props) => (props.isTransitionActive ? 0 : 1)};
+  pointer-events: ${(props) => (props.isTransitionActive ? 'none' : null)};
   transition:0.3s;
 
   &:hover {

@@ -1,50 +1,107 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import {
-  Wrapper,
-  Container,
-  Title,
-  Description,
-} from '../Components/Main/PagesStyles';
+import {Wrapper, Container, Title} from '../Components/Main/PagesStyles';
 
-import MyPhoto from '../Images/myPhoto.jpg';
+import MyPhoto from '../Images/myPhotoBg.png';
 
-const ImgContainer = styled.div`
-  margin: 0 auto;
+const Character = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Image = styled.img`
+  width: 100%;
+`;
+
+const ImageContainer = styled.div`
   width: 100%;
   max-width: 500px;
+  @media (min-width: 768px) {
+    position: absolute;
+    right: 0;
+  }
 `;
-const Img = styled.img`
+
+const CharacterContainer = styled.div`
   width: 100%;
-  border-radius: 50%;
 `;
+
+const Name = styled(Title)`
+  width: 100%;
+  text-align: left;
+  font-size: 1.4rem;
+`;
+
+const SkillContainer = styled.div`
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+`;
+
+const softSkills = [
+  'Teamwork',
+  'Stress resistance',
+  'Fast-learning',
+  'Work ethic',
+  'Courtesy',
+  'Integrity',
+  'Flexibility',
+];
+
+const programmingSkills = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'React.js',
+  'Styled-components',
+  'Gsap',
+  'SASS/SCSS',
+  'Emailjs',
+];
+
+const age = () => {
+  const myBirth = new Date(1994, 4, 2);
+  const today = new Date();
+  let years = today.getFullYear() - myBirth.getFullYear();
+  if (
+    today.getMonth() < myBirth.getMonth() ||
+    (today.getMonth() === myBirth.getMonth() &&
+      today.getDate() < myBirth.getDate())
+  ) {
+    years--;
+  }
+  return years;
+};
 
 const About = () => {
   return (
     <Wrapper>
       <Container>
-        <Title>Who's this guy?</Title>
-        <Description>
-          Hello, I'm Mateusz Bręk, web developer, based in Poznań. I really
-          enjoy working with code, especially in React.js with styled-components
-          and gsap. I'm focused on fast and responsive websites, love to
-          implement animations on sites. I prefer to keep learning and continue
-          challenging myself. I'm a fast learner, able to gain new skills
-          relatively fast and use them in project. I'm well-organised person
-          with an eye for details.
-        </Description>
-        <ImgContainer>
-          <Img src={MyPhoto} />
-        </ImgContainer>
-        <Description>
-          I have 10 years experience in professional Basketball and still
-          counting, thanks to it I'm open to working in group as well as in
-          stressful situation. Also huge fan of science-fiction and adventures
-          movies or books, outdoor activities, solving problems. I appreciate
-          spending free time in kitchen, I'm addicted to spicy food and cold
-          drinks.
-        </Description>
+        <Title>Character</Title>
+        <Character>
+          <ImageContainer>
+            <Image src={MyPhoto} />
+          </ImageContainer>
+          <CharacterContainer>
+            <Name>Mateusz Bręk</Name>
+            <p>Level {age()} Front-end developer</p>
+            <SkillContainer>
+              <Name>Programming Skills</Name>
+              {programmingSkills.map((skill) => (
+                <p key={skill}>{skill}</p>
+              ))}
+            </SkillContainer>
+            <SkillContainer>
+              <Name>Soft Skills</Name>
+              {softSkills.map((skill) => (
+                <p key={skill}>{skill}</p>
+              ))}
+            </SkillContainer>
+          </CharacterContainer>
+        </Character>
       </Container>
     </Wrapper>
   );

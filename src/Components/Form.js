@@ -9,7 +9,7 @@ const handleValidateStyle = (props) => {
   const {isValid, isValidated} = props.validationObject;
   let color = 'transparent';
   if (!isValid && isValidated) {
-    color = 'red';
+    color = '#f78888';
   }
   return color;
 };
@@ -17,11 +17,12 @@ const handleValidateStyle = (props) => {
 const inputStyle = `
 padding: 10px;
 width: 100%;
-
+font-size: 0.9rem;
 border: none;
 border-bottom: 2px solid;
 border-radius: 5px 5px 0px 0px;
 color: var(--color-font-light);
+
 
 &:focus{
   outline:none;
@@ -55,7 +56,8 @@ const ValidateButton = styled(Button)`
   margin-right: 5px;
   justify-self: right;
   opacity: ${(props) => (props.disabled ? 0.2 : 1)};
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  pointer-events: ${(props) => (props.disabled ? 'none' : null)};
+  cursor: pointer;
   transition: 0.3s;
 `;
 

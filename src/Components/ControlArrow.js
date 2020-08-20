@@ -12,6 +12,11 @@ const Btn = styled(Link)`
   height: 50%;
   width: 200px;
   display: none;
+  transition: 0.3s;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
 
   &:hover {
     .arrow:before {
@@ -71,10 +76,6 @@ const Btn = styled(Link)`
     color: white;
     opacity: 0;
     transition: 0.3s;
-  }
-
-  @media (min-width: 768px) {
-    display: block;
   }
 `;
 

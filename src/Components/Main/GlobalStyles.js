@@ -1,11 +1,26 @@
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  html{
+    font-size:16px;
+    @media(min-width:768px){
+      font-size:18px;
+    } 
+    @media(min-width:1024px){
+      font-size:20px;
+    } 
+  }
+
   body{
     overflow:hidden;
     background-color: var(--color-background-dark);
+    font-family: Montserrat;
   }
 
+  h1,h2,h3{
+    font-family: Montserrat-bold;
+  }
+  
   * {
     margin: 0;
     padding: 0;

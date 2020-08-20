@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   height: 100%;
   width: 100%;
   background-color: var(--color-background);
@@ -9,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 0px auto;
+  margin: auto;
   padding: 40px 0;
   width: 90%;
   max-width: var(--max-space);

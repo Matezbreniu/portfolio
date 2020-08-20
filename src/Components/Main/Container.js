@@ -207,7 +207,7 @@ class Container extends Component {
           >
             <CSSTransition
               key={this.props.location.key}
-              timeout={{enter: 1300, exit: 1300}}
+              timeout={1300}
               classNames='route'
               onEnter={this.handleTransitionActivator}
               onExited={this.handleTransitionActivator}
