@@ -63,7 +63,7 @@ const Social = () => {
     <SocialsContainer>
       <Description>
         You can also find me in social medias and follow my profiles on
-        Facebook, Github or Linkedin.
+        Facebook, Github, Linkedin or discover this Portfolio Code.
       </Description>
       <ButtonsContainer>
         <SocialButton as='a' href='https://www.facebook.com/mateusz.brek'>
@@ -93,6 +93,16 @@ const Social = () => {
             </Face>
             <Face color='#0077B5' face='bottom'>
               Mateusz Bręk
+            </Face>
+          </Cube>
+        </SocialButton>
+        <SocialButton as='a' href='https://github.com/Matezbreniu/portfolio'>
+          <Cube>
+            <Face color='#15151c' face='front'>
+              Portfolio
+            </Face>
+            <Face color='#15151c' face='bottom'>
+              Code
             </Face>
           </Cube>
         </SocialButton>
