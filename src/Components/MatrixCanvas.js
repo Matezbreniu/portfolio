@@ -5,7 +5,7 @@ import styled from 'styled-components';
 class MatrixCanvas extends Component {
   constructor(props) {
     super(props);
-    this.canvas = React.createRef();
+    this.canvasRef = React.createRef();
   }
 
   rows = [];
@@ -102,12 +102,17 @@ class MatrixCanvas extends Component {
   };
 
   componentDidMount() {
-    this.canvas = this.canvas.current;
+    this.canvas = this.canvasRef.current;
     this.setCanvasSize(this.canvas);
     this.ctx = this.canvas.getContext('2d');
     this.createRows();
     this.matrixRain();
     window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+    window.cancelAnimationFrame(this.matrixRain);
   }
 
   Canvas = styled.canvas`
@@ -119,7 +124,7 @@ class MatrixCanvas extends Component {
   `;
 
   render() {
-    return <this.Canvas ref={this.canvas}></this.Canvas>;
+    return <this.Canvas ref={this.canvasRef}></this.Canvas>;
   }
 }
 

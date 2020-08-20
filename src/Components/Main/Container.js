@@ -28,19 +28,6 @@ const Wrapper = styled.main`
     animation: moveLeftExit 1s both 0.3s;
   }
 
-  div.transitionGroup {
-    position: relative;
-    perspective: 1800px;
-    transform-style: preserve-3d;
-  }
-  section.routeSection {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-  }
-
   @keyframes moveLeftExit {
     0% {
       transform: translate3d(0%, 0, 0) rotateY(0deg);
@@ -95,6 +82,20 @@ const Wrapper = styled.main`
       transform: translate3d(0, 0, 0) rotateY(0deg);
     }
   }
+`;
+
+const Section = styled.section`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+`;
+
+const TGroup = styled(TransitionGroup)`
+  position: relative;
+  perspective: 1800px;
+  transform-style: preserve-3d;
 `;
 
 class Container extends Component {
@@ -202,9 +203,7 @@ class Container extends Component {
           currentPath={this.props.location.pathname}
         />
         <Wrapper>
-          <TransitionGroup
-            className={`transitionGroup ${this.state.pageDirection}`}
-          >
+          <TGroup className={`transitionGroup ${this.state.pageDirection}`}>
             <CSSTransition
               key={this.props.location.key}
               timeout={1300}
@@ -212,7 +211,7 @@ class Container extends Component {
               onEnter={this.handleTransitionActivator}
               onExited={this.handleTransitionActivator}
             >
-              <section className='routeSection'>
+              <Section className='routeSection'>
                 <Switch location={this.props.location}>
                   {this.props.pages.map((page) => {
                     const {order, path, component} = page;
@@ -240,9 +239,9 @@ class Container extends Component {
                     path={this.state.nextPage.path}
                   />
                 ) : null}
-              </section>
+              </Section>
             </CSSTransition>
-          </TransitionGroup>
+          </TGroup>
         </Wrapper>
       </>
     );

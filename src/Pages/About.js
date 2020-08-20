@@ -11,21 +11,26 @@ const Character = styled.div`
   flex-wrap: wrap;
 `;
 
-const Image = styled.img`
-  width: 100%;
-`;
-
 const ImageContainer = styled.div`
   width: 100%;
-  max-width: 500px;
+  height: 100%;
   @media (min-width: 768px) {
     position: absolute;
-    right: 0;
+    text-align: right;
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: auto;
   }
 `;
 
 const CharacterContainer = styled.div`
   width: 100%;
+  z-index: 1;
 `;
 
 const Name = styled(Title)`
@@ -36,9 +41,10 @@ const Name = styled(Title)`
 
 const SkillContainer = styled.div`
   width: 100%;
-  @media (min-width: 768px) {
-    width: 50%;
-  }
+`;
+
+const Skill = styled.p`
+  margin: 5px 0;
 `;
 
 const softSkills = [
@@ -87,17 +93,17 @@ const About = () => {
           </ImageContainer>
           <CharacterContainer>
             <Name>Mateusz Bręk</Name>
-            <p>Level {age()} Front-end developer</p>
+            <Skill>Level {age()} Front-end developer</Skill>
             <SkillContainer>
               <Name>Programming Skills</Name>
               {programmingSkills.map((skill) => (
-                <p key={skill}>{skill}</p>
+                <Skill key={skill}>{skill}</Skill>
               ))}
             </SkillContainer>
             <SkillContainer>
               <Name>Soft Skills</Name>
               {softSkills.map((skill) => (
-                <p key={skill}>{skill}</p>
+                <Skill key={skill}>{skill}</Skill>
               ))}
             </SkillContainer>
           </CharacterContainer>

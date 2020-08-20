@@ -38,27 +38,17 @@ const TechnologiesList = styled.ul`
 const Technology = styled.li``;
 
 const PortfolioProject = ({site}) => {
-  const {title, description, technologies, image} = site;
+  const {title, description, technologies, image, liveLink, codeLink} = site;
   return (
     <Wrapper>
       <LinkToPortfolio />
       <Container>
         <Title>{title}</Title>
         <LinksContainer>
-          <LinkBtn
-            as='a'
-            color='#f22424'
-            shadowColor='#d10c0c'
-            href='https://github.com/Matezbreniu/'
-          >
+          <LinkBtn as='a' color='#f22424' shadowColor='#d10c0c' href={codeLink}>
             Code
           </LinkBtn>
-          <LinkBtn
-            as='a'
-            color='#248df3'
-            shadowColor='#0b71d3'
-            href='https://github.com/Matezbreniu/'
-          >
+          <LinkBtn as='a' color='#248df3' shadowColor='#0b71d3' href={liveLink}>
             Website
           </LinkBtn>
         </LinksContainer>
