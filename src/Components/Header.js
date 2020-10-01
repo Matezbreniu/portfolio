@@ -1,27 +1,11 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
 import {NavLink} from 'react-router-dom';
 
-import Burger from '../Burger';
+import {SiteContext} from '../store/store';
 
-const handleMouseEnter = (e) => {
-	const letterList = [...e.target.childNodes[0].childNodes];
-	const tl = gsap.timeline();
-	tl.to(letterList, {
-		y: -10,
-		stagger: 0.1,
-	});
-	tl.to(
-		letterList,
-		{
-			y: 0,
-			stagger: 0.1,
-		},
-		0.2
-	);
-};
+import Burger from './Burger';
 
 const Wrapper = styled.header`
 	position: absolute;
@@ -76,28 +60,43 @@ const LetterSpan = styled.span`
 	display: inline-block;
 `;
 
-const Header = ({
-	pages,
-	isMenuActive,
-	isTransitionActive,
-	handleMenuActivator,
-}) => {
+const handleMouseEnter = (e) => {
+	const letterList = [...e.target.childNodes[0].childNodes];
+	const tl = gsap.timeline();
+	tl.to(letterList, {
+		y: -10,
+		stagger: 0.1,
+	});
+	tl.to(
+		letterList,
+		{
+			y: 0,
+			stagger: 0.1,
+		},
+		0.2
+	);
+};
+
+const Header = () => {
+	const {
+		isMenuActive: [isMenuActive, setIsMenuActive],
+		pages,
+	} = useContext(SiteContext);
+
+	const handleMenuActivator = () => setIsMenuActive((prev) => !prev);
+
 	const menuPages = pages.filter((page) => page.order < 10); // menu pages have order less than 10, while portfolio pages greater than 10
 	return (
 		<Wrapper>
-			<Burger
-				isMenuActive={isMenuActive}
-				isTransitionActive={isTransitionActive}
-				handleMenuActivator={handleMenuActivator}
-			/>
+			<Burger />
 			<Navigation isMenuActive={isMenuActive}>
 				{menuPages.map((page) => (
 					<NavigationLink
 						key={page.order}
 						to={page.path}
+						exact
 						onMouseEnter={handleMouseEnter}
 						onClick={handleMenuActivator}
-						exact
 						activeClassName='selected'
 					>
 						<NavigationName>

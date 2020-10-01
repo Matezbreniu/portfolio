@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
-
+import React, {useState} from 'react';
 import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 
-import {Button} from './Main/PagesStyles';
+import {Button} from '../theme/PagesStyles';
 
 const handleValidateStyle = (props) => {
 	const {isValid, isValidated} = props.validationObject;
@@ -79,58 +78,66 @@ const Message = styled.h3`
 	text-align: center;
 `;
 
-class Form extends Component {
-	state = {
-		name: '',
-		email: '',
-		message: '',
-		validation: false,
-		sent: false,
-	};
+const validationList = [
+	{name: 'name', isValid: false, isValidated: false},
+	{name: 'email', isValid: false, isValidated: false},
+	{name: 'message', isValid: false, isValidated: false},
+];
 
-	validationList = [
-		{name: 'name', isValid: false, isValidated: false},
-		{name: 'email', isValid: false, isValidated: false},
-		{name: 'message', isValid: false, isValidated: false},
-	];
+const findObjectInValidationList = (name) => {
+	return validationList.find((object) => object.name === name);
+};
 
-	handleChange = (e) => {
+const Form = () => {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [message, setMessage] = useState('');
+	const [isValid, setIsValid] = useState(false);
+	const [sent, setSent] = useState(false);
+
+	const handleChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		this.handleValidate(e);
-		this.setState({
-			[name]: value,
-		});
+		handleValidate(e);
+		switch (name) {
+			case 'name':
+				setName(value);
+				break;
+			case 'email':
+				setEmail(value);
+				break;
+			case 'message':
+				setMessage(value);
+				break;
+
+			default:
+				break;
+		}
 	};
 
-	handleSubmit = (e) => {
-		const {validation, sent, name, email, message} = this.state;
-
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (validation && !sent) {
+		if (isValid && !sent) {
 			const params = {
 				name: name,
 				email: email,
 				message: message,
 			};
 			emailjs.send(
-				'gmail',
-				'template_me5ngmG9',
+				process.env.REACT_APP_EMAIL_SERVICE,
+				process.env.REACT_APP_EMAIL_TEMPLATE,
 				params,
-				'user_96YAId7zE22lFOv4GkM10'
+				process.env.REACT_APP_EMAIL_USER
 			);
+			setSent(true);
 		}
-		this.setState({
-			sent: true,
-		});
 	};
 
-	handleValidate = (e) => {
+	const handleValidate = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		const object = this.findObjectInValidationList(name);
+		const object = findObjectInValidationList(name);
 		let validate = false;
-		let validation = false;
 		if (name === 'name') {
 			validate = value.length > 2;
 		}
@@ -146,71 +153,61 @@ class Form extends Component {
 		if (e.type === 'blur') {
 			object.isValidated = true; //prevent to color change while handleChange
 		}
-		const isAllValid = this.validationList.filter((object) => object.isValid);
-		if (isAllValid.length === this.validationList.length) {
-			validation = true;
+		const isAllValid = validationList.filter((object) => object.isValid);
+		if (isAllValid.length === validationList.length) {
+			setIsValid(true);
 		}
-		this.setState({
-			validation,
-		});
 	};
 
-	findObjectInValidationList = (name) => {
-		return this.validationList.find((object) => object.name === name);
-	};
-
-	render() {
-		const {validation, sent} = this.state;
-		return (
-			<SendMessage onSubmit={this.handleSubmit}>
-				<Label htmlFor='name'>
-					<Input
-						type='text'
-						name='name'
-						autocomplete='off'
-						value={this.state.name}
-						onChange={this.handleChange}
-						onBlur={this.handleValidate}
-						validationObject={this.findObjectInValidationList('name')}
-						placeholder='Your name'
-					/>
-				</Label>
-				<Label>
-					<Input
-						type='text'
-						name='email'
-						autocomplete='off'
-						value={this.state.email}
-						onChange={this.handleChange}
-						onBlur={this.handleValidate}
-						validationObject={this.findObjectInValidationList('email')}
-						placeholder='Your email'
-					/>
-				</Label>
-				<Label>
-					<TextArea
-						name='message'
-						autocomplete='off'
-						value={this.state.message}
-						onChange={this.handleChange}
-						onBlur={this.handleValidate}
-						validationObject={this.findObjectInValidationList('message')}
-						cols='30'
-						rows='10'
-						placeholder='Your message'
-					></TextArea>
-				</Label>
-				<ValidateButton disabled={!validation} validate={validation}>
-					Send
-				</ValidateButton>
-				{sent ? (
-					<CorrectlySent>
-						<Message>Thanks for Your message.</Message>
-					</CorrectlySent>
-				) : null}
-			</SendMessage>
-		);
-	}
-}
+	return (
+		<SendMessage autoComplete='ignore' onSubmit={handleSubmit}>
+			<Label htmlFor='name'>
+				<Input
+					type='text'
+					name='name'
+					autoComplete='ignore'
+					value={name}
+					onChange={handleChange}
+					onBlur={handleValidate}
+					validationObject={findObjectInValidationList('name')}
+					placeholder='Your name'
+				/>
+			</Label>
+			<Label>
+				<Input
+					type='text'
+					name='email'
+					autoComplete='ignore'
+					value={email}
+					onChange={handleChange}
+					onBlur={handleValidate}
+					validationObject={findObjectInValidationList('email')}
+					placeholder='Your email'
+				/>
+			</Label>
+			<Label>
+				<TextArea
+					name='message'
+					autoComplete='ignore'
+					value={message}
+					onChange={handleChange}
+					onBlur={handleValidate}
+					validationObject={findObjectInValidationList('message')}
+					cols='30'
+					rows='10'
+					placeholder='Your message'
+				></TextArea>
+			</Label>
+			<ValidateButton disabled={!isValid} validate={isValid}>
+				Send
+			</ValidateButton>
+			{sent ? (
+				<CorrectlySent>
+					<Message>Thanks for Your message.</Message>
+				</CorrectlySent>
+			) : null}
+		</SendMessage>
+	);
+};
 
 export default Form;

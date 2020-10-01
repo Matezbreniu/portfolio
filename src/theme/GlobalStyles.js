@@ -28,9 +28,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root{
-    --color-background: #414141;
-    --color-background-dark: #353535;
-    --color-background-darker: #313131;
+    --color-background: #111111;
+    --color-background-dark: #010101;
+    --color-background-darker: #515151;
     --color-background-light: #727272;
     --color-background-lighter: #929292;
     --color-background-white: #D9D9D9;

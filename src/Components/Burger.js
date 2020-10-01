@@ -1,6 +1,7 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+
+import {SiteContext} from '../store/store';
 
 const BurgerBtn = styled.div`
 	position: fixed;
@@ -55,7 +56,14 @@ const BurgerSpan = styled.span`
 	}
 `;
 
-const Burger = ({isTransitionActive, isMenuActive, handleMenuActivator}) => {
+const Burger = () => {
+	const {
+		isMenuActive: [isMenuActive, setIsMenuActive],
+		isTransitionActive: [isTransitionActive],
+	} = useContext(SiteContext);
+
+	const handleMenuActivator = () => setIsMenuActive((prev) => !prev);
+
 	return (
 		<BurgerBtn
 			isTransitionActive={isTransitionActive}
